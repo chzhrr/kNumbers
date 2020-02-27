@@ -62,7 +62,7 @@
                    .Concat(tmpPawn.def.SpecialDisplayStats(StatRequest.For(tmpPawn)))
                    .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
                    .Select(s => s.stat)
-                   .OrderBy(stat => stat.LabelCap);
+                   .OrderBy(stat => stat.LabelCap.RawText);
 
                 tmpPawn = PawnGenerator.GeneratePawn(PawnKindDefOf.Thrumbo);
 
@@ -72,7 +72,7 @@
                     ((IEnumerable<StatDrawEntry>)statsToDraw.Invoke(null, new[] { tmpPawn }))
                    .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
                    .Select(s => s.stat)
-                   .OrderBy(stat => stat.LabelCap);
+                   .OrderBy(stat => stat.LabelCap.RawText);
 
                 Corpse corpse = (Corpse)ThingMaker.MakeThing(tmpPawn.RaceProps.corpseDef);
                 corpse.InnerPawn = tmpPawn;
@@ -81,7 +81,7 @@
                                .Concat(tmpPawn.def.SpecialDisplayStats(StatRequest.For(tmpPawn)))
                                .Where(s => s.stat != null && s.ShouldDisplay && s.stat.Worker != null)
                                .Select(s => s.stat)
-                               .OrderBy(stat => stat.LabelCap);
+                               .OrderBy(stat => stat.LabelCap.RawText);
             }
             else
                 Log.Error("ReflectionTypeLoadException in Numbers: statsToDraw was null. Please contact mod author.");
@@ -147,13 +147,13 @@
             //skills
             if (new[] { NumbersDefOf.Numbers_Enemies, NumbersDefOf.Numbers_Prisoners, NumbersDefOf.Numbers_MainTable }.Contains(PawnTableDef))
             {
-                DoButton("Skills".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<SkillDef>.AllDefsListForReading), ref x);
+               DoButton("Skills".Translate(), optionsMaker.OptionsMakerForGenericDef(DefDatabase<SkillDef>.AllDefsListForReading), ref x);
             }
 
             //needs btn (for living things)
             if (!new[] { NumbersDefOf.Numbers_AnimalCorpses, NumbersDefOf.Numbers_Corpses }.Contains(PawnTableDef))
             {
-                DoButton("TabNeeds".Translate(), optionsMaker.OptionsMakerForGenericDef(NeedDefs), ref x);
+               DoButton("TabNeeds".Translate(), optionsMaker.OptionsMakerForGenericDef(NeedDefs), ref x);
             }
 
             //cap btn (for living things)

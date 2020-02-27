@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Reflection.Emit;
-    using Harmony;
+    using HarmonyLib;
     using JetBrains.Annotations;
     using RimWorld;
     using RimWorld.Planet;
@@ -18,8 +18,8 @@
 
         public Numbers(ModContentPack content) : base(content)
         {
-            HarmonyInstance harmony = HarmonyInstance.Create("mehni.rimworld.numbers");
-            //HarmonyInstance.DEBUG = true;
+            Harmony harmony = new Harmony("tallidown.rimworld.numbers");
+            Harmony.DEBUG = true;
 
             harmony.Patch(AccessTools.Method(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve)),
                 postfix: new HarmonyMethod(typeof(Numbers), nameof(Columndefs)));
@@ -30,8 +30,8 @@
             harmony.Patch(AccessTools.Method(typeof(PawnTable), nameof(PawnTable.PawnTableOnGUI)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(MakeHeadersReOrderable)));
 
-            harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
-                transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
+           // harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
+           //     transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
 
             harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker_Text), nameof(PawnColumnWorker_Text.DoCell)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(CentreCell)));
@@ -63,11 +63,11 @@
                 DefGenerator.AddImpliedDef(pawnColumnDef);
             }
             //yeah I will set an icon for it because I can.
-            var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
-            pcd.headerIcon = "UI/Icons/Animal/Predator";
-            pcd.headerAlwaysInteractable = true;
-            var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
-            pred.sortable = true;
+            //var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
+            //pcd.headerIcon = "UI/Icons/Animal/Predator";
+            //pcd.headerAlwaysInteractable = true;
+            //var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
+            //pred.sortable = true;
         }
 
         private static bool RightClickToRemoveHeader(PawnColumnWorker __instance, Rect headerRect, PawnTable table)
@@ -110,7 +110,7 @@
                     yield return new CodeInstruction(OpCodes.Stloc, 7);
                 }
 
-                if (instruction.opcode == OpCodes.Ldloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 4)
+                if (instruction.opcode == OpCodes.Ldloc_S && ((LocalBuilder)instruction.operand).LocalIndex == 6)
                 {
                     yield return new CodeInstruction(OpCodes.Ldloc, 7);
                     yield return instruction;
@@ -350,7 +350,7 @@
                 sortable = true,
                 headerTip = (prependDescription ? def.description + "\n\n" : "") + "Numbers_ColumnHeader_Tooltip".Translate(),
                 generated = true,
-                label = def.LabelCap,
+                label = def.LabelCap.RawText,
                 modContentPack = def.modContentPack,
                 modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }
             };

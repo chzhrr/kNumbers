@@ -27,6 +27,6 @@
             .CompareTo(b.health.capacities.GetLevel(def.Ext().capacity));
 
         public override int GetMinHeaderHeight(PawnTable table)
-            => Mathf.CeilToInt(Text.CalcSize(Numbers_Utility.WordWrapAt(def.LabelCap, GetMinWidth(table))).y);
+            => Mathf.CeilToInt(Text.CalcSize(Numbers_Utility.WordWrapAt(def.LabelCap.RawText, GetMinWidth(table))).y);
     }
 }

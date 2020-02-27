@@ -21,7 +21,7 @@
 
         protected override string GetHeaderTip(PawnTable table)
             => "TameFailedRevengeChance".Translate() + "\n\n" + "Numbers_ColumnHeader_Tooltip".Translate();
-
+        /*
         public override void DoHeader(Rect rect, PawnTable table)
         {
             float scale = 0.7f;
@@ -31,5 +31,6 @@
             Rect    position       = new Rect(rect.x + num, rect.yMax - StaticConstructorOnGameStart.Tame.height, headerIconSize.x, headerIconSize.y);
             GUI.DrawTexture(position, StaticConstructorOnGameStart.Tame);
         }
+        */
     }
 }

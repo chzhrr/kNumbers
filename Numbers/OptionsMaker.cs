@@ -143,6 +143,8 @@
             return list;
         }
 
+        // => pcdList.Select(pcd => new FloatMenuOption(GetBestLabelForPawnColumn(pcd), () => AddPawnColumnAtBestPositionAndRefresh(pcd))).ToList();
+
         public List<FloatMenuOption> OptionsMakerForGenericDef<T>(in IEnumerable<T> listOfDefs) where T : Def
         {
             List<FloatMenuOption> list = new List<FloatMenuOption>();
