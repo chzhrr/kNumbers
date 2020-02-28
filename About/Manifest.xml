@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest>
-  <version>1.0.4</version>
+  <version>1.1.0</version>
     <incompatibleWith>
         <li>WorkTab &lt;= 3.8.281</li>
     </incompatibleWith>
-  <manifestUri>https://raw.githubusercontent.com/Mehni/kNumbers/master/About/Manifest.xml</manifestUri>
-  <downloadUri>https://github.com/Mehni/kNumbers/releases/latest</downloadUri>
+  <manifestUri>https://raw.githubusercontent.com/ErwinM/kNumbers/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/ErwinM/kNumbers/releases/latest</downloadUri>
 </Manifest>

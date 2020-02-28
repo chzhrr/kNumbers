@@ -19,7 +19,7 @@
         public Numbers(ModContentPack content) : base(content)
         {
             Harmony harmony = new Harmony("tallidown.rimworld.numbers");
-            Harmony.DEBUG = true;
+            //Harmony.DEBUG = true;
 
             harmony.Patch(AccessTools.Method(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve)),
                 postfix: new HarmonyMethod(typeof(Numbers), nameof(Columndefs)));
