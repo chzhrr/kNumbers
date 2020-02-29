@@ -227,7 +227,6 @@
         {
             PawnTable = NumbersDefOf.Numbers_MainTable;
             PawnTable.columns = new List<PawnColumnDef>(list);
-            PawnTable.columns = Numbers_Utility.AssignHeaderHeightToColumns(PawnTable.columns, PawnTable);
             numbers.UpdateFilter();
             numbers.Notify_ResolutionChanged();
         }

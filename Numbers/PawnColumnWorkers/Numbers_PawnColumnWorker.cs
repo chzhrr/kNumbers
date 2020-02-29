@@ -13,31 +13,29 @@ namespace Numbers
         // thx Fluffy :)
         public override void DoHeader(Rect rect, PawnTable table)
         {
+            bool moveDown = false;
 
-            Rect labelRect = GetHeaderLabelRect(rect);
+            int idx = Numbers_Utility.GetColumnIndex(table.ColumnsListForReading, this.def);
+            if (idx % 2 == 0) { moveDown = true; }
+
+            Rect labelRect = GetHeaderLabelRect(rect, moveDown);
             base.DoHeader(labelRect, table);
 
             // vertical line
-            if (!this.def.moveWorkTypeLabelDown)
-            {
-                // vertical line
-                var lineStart = new Vector2(Mathf.FloorToInt(rect.center.x), labelRect.yMax);
-                // note that two 1px lines give a much crisper line than one 2px line. Obv.
-                GUI.color = new Color(1f, 1f, 1f, .3f);
-                Widgets.DrawLineVertical(lineStart.x, lineStart.y, HeaderLabelLineLength);
-                Widgets.DrawLineVertical(lineStart.x + 1, lineStart.y, HeaderLabelLineLength);
-                GUI.color = Color.white;
-            }
+            GUI.color = new Color(1f, 1f, 1f, .3f);
+            Widgets.DrawLineVertical(labelRect.center.x, labelRect.yMax - 3f, rect.y + HeaderHeight - labelRect.yMax + 3f);
+            Widgets.DrawLineVertical(labelRect.center.x + 1f, labelRect.yMax - 3f, rect.y + HeaderHeight - labelRect.yMax + 3f);
+            GUI.color = Color.white;
         }
 
-        public Rect GetHeaderLabelRect(Rect rect)
+        public Rect GetHeaderLabelRect(Rect rect, bool moveDown)
         {
             Vector2 labelSize = Text.CalcSize(this.def.LabelCap.Resolve());
             labelSize.x = Mathf.Min(labelSize.x, MaxHeaderWidth);
 
             float x = rect.center.x;
             var result = new Rect(x - (labelSize.x + ExtraHeaderLabelWidth) / 2f, rect.y, labelSize.x + ExtraHeaderLabelWidth, HeaderHeight - AlternatingHeaderLabelOffset);
-            if (this.def.moveWorkTypeLabelDown)
+            if (moveDown)
                 result.y += AlternatingHeaderLabelOffset;
 
             return result;

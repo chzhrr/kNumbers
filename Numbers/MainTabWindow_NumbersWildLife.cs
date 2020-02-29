@@ -15,7 +15,7 @@
             {
                 pawnTableDef.columns = listPawnColumDef;
             }
-            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns, pawnTableDef);
+            
 
             UpdateFilter();
             Notify_ResolutionChanged();

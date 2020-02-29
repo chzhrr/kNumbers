@@ -13,7 +13,6 @@ namespace Numbers
         public const float buttonGap = 4f;
         public const float extraTopSpace = 43f;
         public const float AlternatingHeaderLabelOffset = 30f;
-        public const float HeaderLabelLineLength = 30f;
         public const float ExtraHeaderLabelWidth = 15f;
         public const int HeaderHeight = 50;
         public const float MaxHeaderWidth = 90f;

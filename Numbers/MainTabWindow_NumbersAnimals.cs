@@ -6,7 +6,7 @@
 
     public class MainTabWindow_NumbersAnimals : MainTabWindow_Numbers
     {
-        public override void PostOpen()
+          public override void PostOpen()
         {
             pawnTableDef = NumbersDefOf.Numbers_Animals;
 
@@ -15,7 +15,7 @@
             {
                 pawnTableDef.columns = listPawnColumDef;
             }
-            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns, pawnTableDef);
+            
 
             UpdateFilter();
             Notify_ResolutionChanged();

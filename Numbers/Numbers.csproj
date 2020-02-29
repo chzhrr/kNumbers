@@ -315,6 +315,7 @@
     <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Checkbox.cs" />
     <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Icon.cs" />
     <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Text.cs" />
+    <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_WorkPriority.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Age.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllHediffs.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalMilkFullness.cs" />

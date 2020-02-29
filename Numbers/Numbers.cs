@@ -1,16 +1,17 @@
-﻿namespace Numbers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using HarmonyLib;
+using JetBrains.Annotations;
+using RimWorld;
+using RimWorld.Planet;
+using UnityEngine;
+using Verse;
+using static Numbers.Constants;
+namespace Numbers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Reflection.Emit;
-    using HarmonyLib;
-    using JetBrains.Annotations;
-    using RimWorld;
-    using RimWorld.Planet;
-    using UnityEngine;
-    using Verse;
 
     public class Numbers : Mod
     {
@@ -19,7 +20,7 @@
         public Numbers(ModContentPack content) : base(content)
         {
             Harmony harmony = new Harmony("tallidown.rimworld.numbers");
-            //Harmony.DEBUG = true;
+            Harmony.DEBUG = true;
 
             harmony.Patch(AccessTools.Method(typeof(DefGenerator), nameof(DefGenerator.GenerateImpliedDefs_PreResolve)),
                 postfix: new HarmonyMethod(typeof(Numbers), nameof(Columndefs)));
@@ -30,8 +31,8 @@
             harmony.Patch(AccessTools.Method(typeof(PawnTable), nameof(PawnTable.PawnTableOnGUI)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(MakeHeadersReOrderable)));
 
-           // harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
-           //     transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
+            // harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
+            //     transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
 
             harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker_Text), nameof(PawnColumnWorker_Text.DoCell)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(CentreCell)));
@@ -53,6 +54,10 @@
                 postfix: new HarmonyMethod(typeof(Numbers), nameof(AddHighlightToLabel_PostFix)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(AddHighlightToLabel_Transpiler)));
 
+            //TalliDown: lets try this
+            harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker_WorkPriority), "DoHeader"),
+                prefix: new HarmonyMethod(typeof(Numbers), nameof(CustomWorkPriorityDoHeader)));
+
             settings = GetSettings<Numbers_Settings>();
         }
 
@@ -63,11 +68,11 @@
                 DefGenerator.AddImpliedDef(pawnColumnDef);
             }
             //yeah I will set an icon for it because I can.
-            //var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
-            //pcd.headerIcon = "UI/Icons/Animal/Predator";
-            //pcd.headerAlwaysInteractable = true;
-            //var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
-            //pred.sortable = true;
+            var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
+            pcd.headerIcon = "UI/Icons/Animal/Predator";
+            pcd.headerAlwaysInteractable = true;
+            var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
+            pred.sortable = true;
         }
 
         private static bool RightClickToRemoveHeader(PawnColumnWorker __instance, Rect headerRect, PawnTable table)
@@ -132,7 +137,7 @@
                 //if it got inserted at a lower number, the index shifted up 1. If not, stick to the old.
                 numbersPawnTable.PawnTableDef.columns.RemoveAt(from >= to ? from + 1 : from);
                 numbersPawnTable.SetDirty();
-                numbersPawnTable.PawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(numbersPawnTable.PawnTableDef.columns, numbersPawnTable.PawnTableDef);
+
                 if (Find.WindowStack.currentlyDrawnWindow is MainTabWindow_Numbers numbers)
                     numbers.RefreshAndStoreSessionInWorldComp();
             }, ReorderableDirection.Horizontal);
@@ -353,7 +358,7 @@
                 generated = true,
                 label = def.LabelCap.RawText,
                 modContentPack = def.modContentPack,
-                modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }            
+                modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }
             };
             switch (def)
             {
@@ -471,5 +476,11 @@
         }
 
         public override string SettingsCategory() => "Numbers";
+
+        public static bool CustomWorkPriorityDoHeader(PawnColumnWorker __instance, Rect rect, PawnTable table)
+        {
+            Numbers_PawnColumnWorker_WorkPriority.DoHeader(__instance, rect, table);
+            return false;
+        }
     }
 }

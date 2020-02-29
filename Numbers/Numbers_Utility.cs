@@ -1,5 +1,6 @@
 ﻿namespace Numbers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using RimWorld;
@@ -82,25 +83,18 @@
             return result;
         }
 
-        public static List<PawnColumnDef> AssignHeaderHeightToColumns(List<PawnColumnDef> columns, PawnTableDef pawnTableDef )
+        public static int GetColumnIndex(List<PawnColumnDef> columns, PawnColumnDef target)
         {
-            // leave the work tab alone as we are using its 'moveWorkTypeDown' indicator
-            if (pawnTableDef == PawnTableDefOf.Work) { return columns;  }
-            
             int idx = 0;
             foreach (PawnColumnDef column in columns)
             {
-                if (idx % 2 == 0)
+                if (column == target)
                 {
-                    column.moveWorkTypeLabelDown = true;
-                }
-                else
-                {
-                    column.moveWorkTypeLabelDown = false;
+                    return idx;
                 }
                 idx++;
             }
-            return columns;
+            throw new ArgumentException($"Reached end of compare and did not find column in column list");
         }
     }
 
