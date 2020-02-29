@@ -174,6 +174,9 @@
             return mostSevereHediff;
         }
 
+        public override int GetMinHeaderHeight(PawnTable table)
+            => Mathf.CeilToInt(Text.CalcSize(Numbers_Utility.WordWrapAt(def.LabelCap.RawText, GetMinWidth(table))).y);
+
         public override int Compare(Pawn a, Pawn b)
             => GetTextFor(FindMostSevereHediff(a)).CompareTo(GetTextFor(FindMostSevereHediff(b)));
     }

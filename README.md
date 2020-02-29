@@ -5,10 +5,6 @@ Adds a customizable general overview tab, allowing you to see any stats on all y
 
 ![Main Image](./.github/assets/images/img1.png)
 
-### Updates by TalliDown
-29/2/2020 - Implemented alternating column headers to improve readibility. Less truncating and better use of space.
-27/2/2020 - Updated to Rimworld 1.1
-
 ### Features
 
 - Customizable overview tab, displays as many columns as you can fit on your screen.
