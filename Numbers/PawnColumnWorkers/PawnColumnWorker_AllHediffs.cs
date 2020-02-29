@@ -7,7 +7,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_AllHediffs : PawnColumnWorker_Icon
+    public class PawnColumnWorker_AllHediffs : Numbers_PawnColumnWorker_Icon
     {
         protected override Texture2D GetIconFor(Pawn pawn)
             => VisibleHediffs(pawn).Any()

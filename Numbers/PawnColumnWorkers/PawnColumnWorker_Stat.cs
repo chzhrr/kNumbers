@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Stat : PawnColumnWorker_Text
+    public class PawnColumnWorker_Stat : Numbers_PawnColumnWorker_Text
     {
         public const int minWidthBasedOnNarrowestColumnThatColumnBeingMass = 69;
         public const int maxWidthBasedOnColumnsWithALongAssNameLikeThisInt = 150;
@@ -27,7 +27,7 @@
                     + margin;
 
         public override int GetMinHeaderHeight(PawnTable table)
-            => Mathf.CeilToInt(Text.CalcSize(Numbers_Utility.WordWrapAt(def.LabelCap, GetMinWidth(table))).y); //not messy at all.
+            => Mathf.CeilToInt(Text.CalcSize(Numbers_Utility.WordWrapAt(def.LabelCap.RawText, GetMinWidth(table))).y); //not messy at all.
 
         public override int Compare(Pawn a, Pawn b)
             => (def.Ext().stat.Worker.IsDisabledFor(a) ? 0 : a.GetStatValue(def.Ext().stat)).CompareTo

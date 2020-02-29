@@ -8,7 +8,7 @@
     using Verse;
     using Verse.AI;
 
-    public class PawnColumnWorker_Equipment : PawnColumnWorker
+    public class PawnColumnWorker_Equipment : Numbers_PawnColumnWorker
     {
         private int width;
         private static readonly int baseWidth = 6 * 28; //6 boxes, 28 wide each.

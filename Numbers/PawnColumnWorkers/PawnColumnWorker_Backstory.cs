@@ -3,7 +3,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_Backstory : PawnColumnWorker_Text
+    public class PawnColumnWorker_Backstory : Numbers_PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
             => pawn.story.TitleShortCap;

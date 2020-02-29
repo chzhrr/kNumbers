@@ -4,7 +4,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_TameChance : PawnColumnWorker_Text
+    public class PawnColumnWorker_TameChance : Numbers_PawnColumnWorker_Text
     {
         public override int Compare(Pawn a, Pawn b) => GetValue(a).CompareTo(GetValue(b));
 

@@ -132,6 +132,7 @@
                 //if it got inserted at a lower number, the index shifted up 1. If not, stick to the old.
                 numbersPawnTable.PawnTableDef.columns.RemoveAt(from >= to ? from + 1 : from);
                 numbersPawnTable.SetDirty();
+                numbersPawnTable.PawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(numbersPawnTable.PawnTableDef.columns);
                 if (Find.WindowStack.currentlyDrawnWindow is MainTabWindow_Numbers numbers)
                     numbers.RefreshAndStoreSessionInWorldComp();
             }, ReorderableDirection.Horizontal);
@@ -352,7 +353,7 @@
                 generated = true,
                 label = def.LabelCap.RawText,
                 modContentPack = def.modContentPack,
-                modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }
+                modExtensions = new List<DefModExtension> { new DefModExtension_PawnColumnDefs() }            
             };
             switch (def)
             {

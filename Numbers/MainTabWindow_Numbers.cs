@@ -1,23 +1,20 @@
-﻿namespace Numbers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using RimWorld;
-    using RimWorld.Planet;
-    using UnityEngine;
-    using Verse;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using RimWorld;
+using RimWorld.Planet;
+using UnityEngine;
+using Verse;
+using static Numbers.Constants;
 
+namespace Numbers
+{
+    
     public class MainTabWindow_Numbers : MainTabWindow_PawnTable
     {
-        public const float buttonWidth = 110f;
-        public const float buttonHeight = 35f;
-        public const float buttonGap = 4f;
-        public const float extraTopSpace = 83f;
-
         public static List<Func<Pawn, bool>> filterValidator = new List<Func<Pawn, bool>>
-                                                        { Find.World.GetComponent<WorldComponent_Numbers>().primaryFilter.Value };
+            { Find.World.GetComponent<WorldComponent_Numbers>().primaryFilter.Value };
 
         private readonly IEnumerable<StatDef> pawnHumanlikeStatDef;
         private readonly IEnumerable<StatDef> pawnAnimalStatDef;
@@ -92,6 +89,7 @@
             if (Find.World.GetComponent<WorldComponent_Numbers>().sessionTable.TryGetValue(defaultTable, out List<PawnColumnDef> list))
                 pawnTableDef.columns = list;
 
+            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns);
             UpdateFilter();
         }
 
@@ -217,6 +215,7 @@
             SetDirty();
             Notify_ResolutionChanged();
             Find.World.GetComponent<WorldComponent_Numbers>().sessionTable[PawnTableDef] = PawnTableDef.columns;
+            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns);
         }
 
         public void UpdateFilter()

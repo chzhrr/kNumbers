@@ -4,8 +4,11 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_SelfTend : PawnColumnWorker_Checkbox
+    public class PawnColumnWorker_SelfTend : Numbers_PawnColumnWorker_Checkbox
     {
+
+        private Vector2 cachedLabelSize = Vector2.zero;
+
         protected override bool GetValue(Pawn pawn) => pawn.playerSettings.selfTend;
 
         protected override bool HasCheckbox(Pawn pawn) => pawn.IsColonist && !pawn.Dead && !(pawn.WorkTypeIsDisabled(WorkTypeDefOf.Doctor));
@@ -22,7 +25,7 @@
 
         protected override string GetTip(Pawn pawn) => "SelfTendTip".Translate(Faction.OfPlayer.def.pawnsPlural, TendUtility.SelfTendQualityFactor.ToStringPercent()).CapitalizeFirst();
 
-        /*
+       /*
         public override void DoHeader(Rect rect, PawnTable table)
         {
             float scale = 0.7f;

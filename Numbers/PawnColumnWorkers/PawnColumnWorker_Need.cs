@@ -7,7 +7,7 @@
     using Verse;
 
     [StaticConstructorOnStartup]
-    public class PawnColumnWorker_Need : PawnColumnWorker
+    public class PawnColumnWorker_Need : Numbers_PawnColumnWorker
     {
         private static FieldInfo needThreshPercent = typeof(Need).GetField("threshPercents", BindingFlags.NonPublic | BindingFlags.Instance);
 

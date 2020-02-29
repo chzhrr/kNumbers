@@ -3,7 +3,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_Forbidden : PawnColumnWorker_Checkbox
+    public class PawnColumnWorker_Forbidden : Numbers_PawnColumnWorker_Checkbox
     {
         protected override bool GetValue(Pawn pawn) => ((Thing)pawn.ParentHolder).IsForbidden(Faction.OfPlayer);
 

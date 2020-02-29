@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Capacity : PawnColumnWorker_Text
+    public class PawnColumnWorker_Capacity : Numbers_PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
             => pawn.health.capacities.GetLevel(def.Ext().capacity).ToStringPercent();

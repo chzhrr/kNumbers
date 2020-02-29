@@ -3,7 +3,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_AnimalWildness : PawnColumnWorker_Text
+    public class PawnColumnWorker_AnimalWildness : Numbers_PawnColumnWorker_Text
     {
         public override int Compare(Pawn a, Pawn b)
             => (a.AnimalOrWildMan() || b.AnimalOrWildMan())
