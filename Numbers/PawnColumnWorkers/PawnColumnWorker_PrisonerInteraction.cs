@@ -6,7 +6,7 @@
     using Verse;
     using Verse.Sound;
 
-    public class PawnColumnWorker_PrisonerInteraction : Numbers_PawnColumnWorker
+    public class PawnColumnWorker_PrisonerInteraction : PawnColumnWorker
     {
         //for mods, like Prison Labour, that add more interactinodefs.
         private readonly int width = DefDatabase<PrisonerInteractionModeDef>.DefCount * 30;

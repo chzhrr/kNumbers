@@ -7,7 +7,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Inventory : Numbers_PawnColumnWorker
+    public class PawnColumnWorker_Inventory : PawnColumnWorker
     {
         private int width;
         private static readonly int baseWidth = 3 * 28; //3 boxes, 28 wide each.

@@ -7,7 +7,7 @@
 
     [StaticConstructorOnStartup]
     //mostly from Koisama
-    public class PawnColumnWorker_Skill : Numbers_PawnColumnWorker
+    public class PawnColumnWorker_Skill : PawnColumnWorker
     {
 
         private static readonly Texture2D passionMinorIcon = ContentFinder<Texture2D>.Get("UI/Icons/PassionMinor");

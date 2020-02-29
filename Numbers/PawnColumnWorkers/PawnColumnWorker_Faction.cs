@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    class PawnColumnWorker_Faction : Numbers_PawnColumnWorker_Text
+    class PawnColumnWorker_Faction : PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
             => pawn.Faction?.Name;

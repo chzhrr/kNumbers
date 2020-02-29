@@ -5,7 +5,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_AnimalEggProgress : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_AnimalEggProgress : PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
         {

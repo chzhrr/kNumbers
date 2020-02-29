@@ -7,7 +7,7 @@
     using Verse;
     using System.Reflection;
 
-    public class PawnColumnWorker_Race : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_Race : PawnColumnWorker_Text
     {
         private readonly Dictionary<PawnTableDef, float> widthsTables = WorldComponent_Numbers.PrimaryFilter.Keys.ToDictionary(x => x, x => 0f);
 

@@ -81,24 +81,6 @@
             UIHighlighter.HighlightOpportunity(rect, "InfoCard");
             return result;
         }
-
-        public static List<PawnColumnDef> AssignHeaderHeightToColumns(List<PawnColumnDef> columns)
-        {
-            int idx = 0;
-            foreach (PawnColumnDef column in columns)
-            {
-                if (idx % 2 == 0)
-                {
-                    column.moveWorkTypeLabelDown = true;
-                }
-                else
-                {
-                    column.moveWorkTypeLabelDown = false;
-                }
-                idx++;
-            }
-            return columns;
-        }
     }
 
     [DefOf]

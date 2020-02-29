@@ -300,7 +300,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
     <Compile Include="DefModExtension_PawnTableDefs.cs" />
     <Compile Include="Dialog_IHaveToCreateAnEntireFuckingDialogForANOKAYBUTTONFFS.cs" />
     <Compile Include="MainTabWindow_Numbers.cs" />
@@ -311,10 +310,6 @@
     <Compile Include="Numbers_SettingsHelper.cs" />
     <Compile Include="Numbers_Utility.cs" />
     <Compile Include="OptionsMaker.cs" />
-    <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker.cs" />
-    <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Checkbox.cs" />
-    <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Icon.cs" />
-    <Compile Include="PawnColumnWorkers\Numbers_PawnColumnWorker_Text.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_Age.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AllHediffs.cs" />
     <Compile Include="PawnColumnWorkers\PawnColumnWorker_AnimalMilkFullness.cs" />

@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Inspiration : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_Inspiration : PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
             => pawn.InspirationDef?.LabelCap;

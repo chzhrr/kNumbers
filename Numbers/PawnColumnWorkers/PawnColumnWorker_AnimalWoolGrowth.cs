@@ -4,7 +4,7 @@
     using RimWorld;
     using Verse;
 
-    public class PawnColumnWorker_AnimalWoolGrowth : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_AnimalWoolGrowth : PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
         {

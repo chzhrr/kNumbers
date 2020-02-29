@@ -6,7 +6,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Pain : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_Pain : PawnColumnWorker_Text
     {
         protected override string GetTextFor(Pawn pawn)
             => pawn.health.hediffSet.PainTotal.ToStringPercent();

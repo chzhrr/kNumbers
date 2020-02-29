@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_Bleedrate : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_Bleedrate : PawnColumnWorker_Text
     {
         private static readonly Color MediumPainColor = new Color(0.9f, 0.9f, 0f);
 

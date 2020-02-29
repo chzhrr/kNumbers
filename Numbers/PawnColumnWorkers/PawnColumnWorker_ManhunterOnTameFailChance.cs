@@ -4,7 +4,7 @@
     using UnityEngine;
     using Verse;
 
-    public class PawnColumnWorker_ManhunterOnTameFailChance : Numbers_PawnColumnWorker_Text
+    public class PawnColumnWorker_ManhunterOnTameFailChance : PawnColumnWorker_Text
     {
         public override int Compare(Pawn a, Pawn b)
             => GetValue(a).CompareTo(GetValue(b));
