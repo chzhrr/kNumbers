@@ -16,7 +16,7 @@ namespace Numbers
         public const float HeaderLabelLineLength = 30f;
         public const float ExtraHeaderLabelWidth = 15f;
         public const int HeaderHeight = 50;
-        public const float MaxHeaderWidth = 110f;
+        public const float MaxHeaderWidth = 90f;
         
         #endregion Fields
     }

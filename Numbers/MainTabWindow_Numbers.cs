@@ -89,7 +89,7 @@ namespace Numbers
             if (Find.World.GetComponent<WorldComponent_Numbers>().sessionTable.TryGetValue(defaultTable, out List<PawnColumnDef> list))
                 pawnTableDef.columns = list;
 
-            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns);
+            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns, this.pawnTableDef);
             UpdateFilter();
         }
 
@@ -215,7 +215,7 @@ namespace Numbers
             SetDirty();
             Notify_ResolutionChanged();
             Find.World.GetComponent<WorldComponent_Numbers>().sessionTable[PawnTableDef] = PawnTableDef.columns;
-            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns);
+            pawnTableDef.columns = Numbers_Utility.AssignHeaderHeightToColumns(pawnTableDef.columns, pawnTableDef);
         }
 
         public void UpdateFilter()

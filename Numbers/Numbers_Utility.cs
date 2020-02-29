@@ -82,8 +82,11 @@
             return result;
         }
 
-        public static List<PawnColumnDef> AssignHeaderHeightToColumns(List<PawnColumnDef> columns)
+        public static List<PawnColumnDef> AssignHeaderHeightToColumns(List<PawnColumnDef> columns, PawnTableDef pawnTableDef )
         {
+            // leave the work tab alone as we are using its 'moveWorkTypeDown' indicator
+            if (pawnTableDef == PawnTableDefOf.Work) { return columns;  }
+            
             int idx = 0;
             foreach (PawnColumnDef column in columns)
             {
