@@ -14,7 +14,7 @@
         public const float buttonWidth = 110f;
         public const float buttonHeight = 35f;
         public const float buttonGap = 4f;
-        public const float extraTopSpace = 43f;
+        public const float extraTopSpace = 63f;
 
         public static List<Func<Pawn, bool>> filterValidator = new List<Func<Pawn, bool>>
                                                         { Find.World.GetComponent<WorldComponent_Numbers>().primaryFilter.Value };

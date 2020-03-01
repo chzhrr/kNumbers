@@ -29,9 +29,10 @@
 
             harmony.Patch(AccessTools.Method(typeof(PawnTable), nameof(PawnTable.PawnTableOnGUI)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(MakeHeadersReOrderable)));
-
-           // harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
-           //     transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
+            
+            // HERE!!
+            harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker), nameof(PawnColumnWorker.DoHeader)),
+                transpiler: new HarmonyMethod(typeof(Numbers), nameof(UseWordWrapOnHeaders)));
 
             harmony.Patch(AccessTools.Method(typeof(PawnColumnWorker_Text), nameof(PawnColumnWorker_Text.DoCell)),
                 transpiler: new HarmonyMethod(typeof(Numbers), nameof(CentreCell)));
@@ -63,11 +64,11 @@
                 DefGenerator.AddImpliedDef(pawnColumnDef);
             }
             //yeah I will set an icon for it because I can.
-            //var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
-            //pcd.headerIcon = "UI/Icons/Animal/Predator";
-            //pcd.headerAlwaysInteractable = true;
-            //var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
-            //pred.sortable = true;
+            var pcd = DefDatabase<PawnColumnDef>.GetNamed("ManhunterOnDamageChance");
+            pcd.headerIcon = "UI/Icons/Animal/Predator";
+            pcd.headerAlwaysInteractable = true;
+            var pred = DefDatabase<PawnColumnDef>.GetNamed("Predator");
+            pred.sortable = true;
         }
 
         private static bool RightClickToRemoveHeader(PawnColumnWorker __instance, Rect headerRect, PawnTable table)
@@ -147,15 +148,16 @@
         }
 
         private static IEnumerable<CodeInstruction> UseWordWrapOnHeaders(IEnumerable<CodeInstruction> instructions)
-        {
-            MethodInfo Truncate = AccessTools.Method(typeof(GenText), nameof(GenText.Truncate));
+        {   
+            MethodInfo Truncate = AccessTools.Method(typeof(GenText), nameof(GenText.Truncate), new Type[] { typeof(String), typeof(float), typeof(Dictionary<string, string>) });
             MethodInfo WordWrap = AccessTools.Method(typeof(Numbers_Utility), nameof(Numbers_Utility.WordWrapAt));
-
+            // Type pawnColumWorkerType = GenTypes.GetTypeInAnyAssembly("WorkTab.PawnColumnWorker_WorkType");
             var instructionList = instructions.ToList();
             for (int i = 0; i < instructionList.Count; i++)
             {
                 if (instructionList[i].opcode == OpCodes.Ldnull && instructionList[i + 1].operand == Truncate)
                 {
+                    //throw new ArgumentException($"is found");
                     instructionList[i].opcode = OpCodes.Ldarg_2;
                     instructionList[i + 1].operand = WordWrap;
                 }
