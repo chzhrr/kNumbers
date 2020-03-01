@@ -5,6 +5,16 @@ using static Numbers.Constants;
 
 namespace Numbers
 {
+
+    /* This is *not* a child of the actual PCW_Workpriority, instead we intercept the call to DoHeader with a Harmony patch in numbers.cs.
+     * We do this to change the implementation of alternating header label heights. In the original method the height of the label is determined by
+     * 'PawnColumnDef.moveWorkTypeLabelDown'. The state of each label seems hardcoded. This is not what we want: we want to move them around
+     * and have the height adjust based on their order (odd/even) like how all other Workers in Numbers handle labels. This way they can be integrated
+     * seemlessly into numbers tables.
+     */
+
+
+
 	public class Numbers_PawnColumnWorker_WorkPriority
     { 
 
@@ -16,13 +26,10 @@ namespace Numbers
             if (idx % 2 == 0) { moveDown = true; }
 
             string label = __instance.def.workType.labelShort;
-
-            Rect labelRect = GetHeaderLabelRect(rect, moveDown, label);
+            Rect labelRect = Numbers_Utility.GetHeaderLabelRect(rect, label, moveDown);
 
             // from PawnColumnWorker.WorkPriority.DoHeader
-            
             Text.Font = GameFont.Small;
-            //MouseoverSounds.DoRegion(labelRect);
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.Label(labelRect, label);
             GUI.color = new Color(1f, 1f, 1f, 0.3f);
@@ -30,19 +37,6 @@ namespace Numbers
             Widgets.DrawLineVertical(labelRect.center.x + 1f, labelRect.yMax - 3f, rect.y + 50f - labelRect.yMax + 3f);
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
-        }
-
-        public static Rect GetHeaderLabelRect(Rect rect, bool moveDown, string label)
-        {
-            Vector2 labelSize = Text.CalcSize(label);
-            labelSize.x = Mathf.Min(labelSize.x, MaxHeaderWidth);
-
-            float x = rect.center.x;
-            var result = new Rect(x - (labelSize.x + ExtraHeaderLabelWidth) / 2f, rect.y, labelSize.x + ExtraHeaderLabelWidth, HeaderHeight - AlternatingHeaderLabelOffset);
-            if (moveDown)
-                result.y += AlternatingHeaderLabelOffset;
-
-            return result;
         }
     }
 }

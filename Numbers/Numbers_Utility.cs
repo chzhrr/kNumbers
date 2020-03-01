@@ -1,11 +1,14 @@
-﻿namespace Numbers
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using RimWorld;
+using UnityEngine;
+using Verse;
+using static Numbers.Constants;
+
+namespace Numbers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using RimWorld;
-    using UnityEngine;
-    using Verse;
+   
 
     public static class Numbers_Utility
     {
@@ -95,6 +98,27 @@
                 idx++;
             }
             throw new ArgumentException($"Reached end of compare and did not find column in column list");
+        }
+
+        public static Rect GetHeaderLabelRect(Rect rect, string label, bool moveDown)
+        {
+            Vector2 labelSize = Text.CalcSize(label);
+            labelSize.x = Mathf.Min(labelSize.x, MaxHeaderWidth);
+
+            float x = rect.center.x;
+            var result = new Rect(x - (labelSize.x + ExtraHeaderLabelWidth) / 2f, rect.y, labelSize.x + ExtraHeaderLabelWidth, HeaderHeight - AlternatingHeaderLabelOffset);
+            if (moveDown)
+                result.y += AlternatingHeaderLabelOffset;
+
+            return result;
+        }
+
+        public static void DrawHeaderLine(Rect rect, Rect labelRect)
+        {
+            GUI.color = new Color(1f, 1f, 1f, .3f);
+            Widgets.DrawLineVertical(labelRect.center.x, labelRect.yMax - 3f, rect.y + HeaderHeight - labelRect.yMax + 3f);
+            Widgets.DrawLineVertical(labelRect.center.x + 1f, labelRect.yMax - 3f, rect.y + HeaderHeight - labelRect.yMax + 3f);
+            GUI.color = Color.white;
         }
     }
 
