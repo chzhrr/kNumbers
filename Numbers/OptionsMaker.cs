@@ -23,7 +23,9 @@
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_MentalState"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_JobCurrent"),
                          DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_JobQueued"),
-                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList") };
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_HediffList"),
+                         DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_Traits")
+            };
 
         private static IEnumerable<PawnColumnDef> Prisoners
             => new[] { DefDatabase<PawnColumnDef>.GetNamedSilentFail("Numbers_PrisonerInteraction"),
