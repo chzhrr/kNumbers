@@ -51,7 +51,7 @@
 
         //use a stupid method to sort, maybe it needs to be sharpen
         public override int Compare(Pawn a, Pawn b)
-            => (GetTextFor(a).CompareTo(GetTextFor(b)));
+            => (GetTextFor(a) ?? string.Empty).CompareTo((GetTextFor(b) ?? string.Empty));
 
         public override int GetMinWidth(PawnTable table)
             //adjust width because traits need more space
