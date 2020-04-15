@@ -203,4 +203,10 @@
     <label>Faction</label>
   </PawnColumnDef>
 
+  <PawnColumnDef>
+    <defName>Numbers_Traits</defName>
+    <workerClass>Numbers.PawnColumnWorker_Traits</workerClass>
+    <sortable>true</sortable>
+    <label>Traits</label>
+  </PawnColumnDef>
 </Defs>
